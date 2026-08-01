@@ -1,3 +1,29 @@
 <resources>
-    <string name="app_name">APFS-Explorer</string>
+
+    <string name="app_name">VolumeX</string>
+
+    <string name="header_description">
+        Read APFS-formatted drives directly from Android.
+    </string>
+
+    <string name="usb_status">
+        USB Status
+    </string>
+
+    <string name="waiting_usb">
+        Waiting for USB device
+    </string>
+
+    <string name="connect_drive">
+        Connect Drive
+    </string>
+
+    <string name="about">
+        About
+    </string>
+
+    <string name="version">
+        Version
+    </string>
+
 </resources>

@@ -1,10 +1,10 @@
-package com.example.apfs_explorer
+package com.fatalpuppet.volumex
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.example.apfs_explorer.ui.screens.HomeScreen
-import com.example.apfs_explorer.ui.theme.APFSExplorerTheme
+import com.fatalpuppet.volumex.ui.screens.HomeScreen
+import com.fatalpuppet.volumex.ui.theme.VolumeXTheme
 
 class MainActivity : ComponentActivity() {
 
@@ -12,7 +12,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            APFSExplorerTheme {
+            VolumeXTheme {
                 HomeScreen()
             }
         }

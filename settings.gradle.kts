@@ -22,5 +22,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "APFS-Explorer"
+rootProject.name = "VolumeX"
 include(":app")

@@ -1,4 +1,4 @@
-package com.example.apfs_explorer
+package com.fatalpuppet.volumex
 
 import org.junit.Test
 
