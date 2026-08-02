@@ -1,15 +1,15 @@
-package com.fatalpuppet.volumex.data.model
+package com.fatalpuppet.volumex.data.models
 
 data class UsbDeviceInfo(
 
-    val manufacturer: String? = null,
+    val deviceName: String,
 
-    val product: String? = null,
+    val manufacturer: String?,
 
-    val vendorId: Int = 0,
+    val productName: String?,
 
-    val productId: Int = 0,
+    val vendorId: Int,
 
-    val interfaceCount: Int = 0
+    val productId: Int
 
 )

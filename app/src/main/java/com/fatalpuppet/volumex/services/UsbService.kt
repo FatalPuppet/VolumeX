@@ -6,6 +6,8 @@ import android.hardware.usb.UsbManager
 import android.content.BroadcastReceiver
 import android.content.IntentFilter
 
+import com.fatalpuppet.volumex.data.models.UsbDeviceInfo
+
 class UsbService(
     private val context: Context
 ) {
@@ -19,6 +21,26 @@ class UsbService(
     }
     fun getConnectedDevices(): List<UsbDevice> {
         return usbManager.deviceList.values.toList()
+    }
+
+    fun getDeviceInfo(): List<UsbDeviceInfo> {
+        return usbManager.deviceList.values.map { device ->
+            UsbDeviceInfo(
+                deviceName = device.deviceName,
+                manufacturer = device.manufacturerName,
+                productName = device.productName,
+                vendorId = device.vendorId,
+                productId = device.productId
+            )
+        }
+    }
+
+    fun getConnectedDeviceCount(): Int {
+        return usbManager.deviceList.size
+    }
+
+    fun hasConnectedDevices(): Boolean {
+        return usbManager.deviceList.isNotEmpty()
     }
     fun registerReceiver(
         onAttach: () -> Unit,

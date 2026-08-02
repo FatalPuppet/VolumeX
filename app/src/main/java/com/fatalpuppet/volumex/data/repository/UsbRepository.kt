@@ -26,7 +26,12 @@ class UsbRepository(
             onDetach
         )
     }
-
+    fun devices() =
+        usbService.getDeviceInfo()
+    fun deviceCount(): Int =
+        usbService.getConnectedDeviceCount()
+    fun hasDevices(): Boolean =
+        usbService.hasConnectedDevices()
     fun unregisterUsbEvents() {
         usbService.unregisterReceiver()
     }

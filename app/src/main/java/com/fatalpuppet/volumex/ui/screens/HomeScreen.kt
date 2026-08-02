@@ -9,16 +9,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.platform.LocalContext
+
 import com.fatalpuppet.volumex.ui.viewmodel.HomeViewModel
 import com.fatalpuppet.volumex.data.usb.UsbState
-
 import com.fatalpuppet.volumex.ui.components.AboutButton
 import com.fatalpuppet.volumex.ui.components.AppHeader
 import com.fatalpuppet.volumex.ui.components.ConnectButton
 import com.fatalpuppet.volumex.ui.components.StatusCard
 import com.fatalpuppet.volumex.ui.components.VersionFooter
-
-import androidx.compose.runtime.LaunchedEffect
 
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.layout.Spacer
@@ -36,9 +36,11 @@ fun HomeScreen() {
 
     val homeViewModel: HomeViewModel = viewModel()
     val uiState = homeViewModel.uiState
+    val context = LocalContext.current
 
     LaunchedEffect(Unit) {
-        homeViewModel.checkUsbSupport()
+        homeViewModel.initialize(context)
+        homeViewModel.scanUsbDevices()
     }
     Column(
         modifier = Modifier

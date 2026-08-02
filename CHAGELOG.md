@@ -23,5 +23,18 @@
 - Compose dependency issues
 - Material Icons configuration
 
-## 02.0-alpha - USB Engine v1
-- Implementing Android communication
+## 0.2.0-alpha
+
+### Added
+- Real USB device detection using UsbManager
+- USB device information model
+- Repository support for connected devices
+- Storage package scaffold
+- BlockDeviceReader interface
+
+### Changed
+- Replaced simulated USB status with real device enumeration
+
+### Fixed
+- HomeViewModel initialization
+- Android 13+ receiver compatibility
