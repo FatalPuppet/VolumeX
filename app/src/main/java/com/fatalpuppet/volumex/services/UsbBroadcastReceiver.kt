@@ -9,20 +9,17 @@ class UsbBroadcastReceiver(
     private val onDeviceAttached: () -> Unit,
     private val onDeviceDetached: () -> Unit
 ) : BroadcastReceiver() {
-
-    override fun onReceive(context: Context?, intent: Intent?) {
-
+    override fun onReceive(
+        context: Context?,
+        intent: Intent?
+    ) {
         when (intent?.action) {
-
             UsbManager.ACTION_USB_DEVICE_ATTACHED -> {
-                onDeviceAttached()
+            onDeviceAttached()
             }
-
             UsbManager.ACTION_USB_DEVICE_DETACHED -> {
                 onDeviceDetached()
             }
-
         }
-
     }
 }

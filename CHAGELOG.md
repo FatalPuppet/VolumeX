@@ -23,18 +23,22 @@
 - Compose dependency issues
 - Material Icons configuration
 
-## 0.2.0-alpha
+## [0.2.0-alpha] - 2026-08-02
 
 ### Added
-- Real USB device detection using UsbManager
-- USB device information model
-- Repository support for connected devices
-- Storage package scaffold
-- BlockDeviceReader interface
+- Automatic USB device detection.
+- USB attach/detach broadcast handling.
+- USB device information cards.
+- DiskScanner framework.
+- Storage package foundation.
+- BlockDeviceReader skeleton.
+- Partition data model.
 
 ### Changed
-- Replaced simulated USB status with real device enumeration
+- Replaced simulated USB detection with real Android UsbManager integration.
+- Improved USB status updates.
 
 ### Fixed
-- HomeViewModel initialization
-- Android 13+ receiver compatibility
+- HomeViewModel initialization.
+- Android 13+ BroadcastReceiver compatibility.
+- Safe handling of USB serial numbers without permission.

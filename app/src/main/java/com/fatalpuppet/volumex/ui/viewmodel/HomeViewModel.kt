@@ -16,15 +16,16 @@ import com.fatalpuppet.volumex.data.repository.UsbRepository
 class HomeViewModel : ViewModel() {
     var uiState by mutableStateOf(HomeUiState())
         private set
-
-    private lateinit var usbRepository: UsbRepository
-
+    private var usbRepository: UsbRepository? = null
     fun initialize(context: Context) {
-        usbRepository = UsbRepository(context)
+        if (usbRepository == null) {
+            usbRepository = UsbRepository(context)
+        }
     }
-
     fun scanUsbDevices() {
-        val devices = usbRepository.devices()
+        val repository = usbRepository ?: return
+        val devices = repository.devices()
+
         uiState = uiState.copy(
             connectedDevices = devices
         )
@@ -40,7 +41,9 @@ class HomeViewModel : ViewModel() {
             )
         }
     }
-
+    fun onUsbChanged() {
+        scanUsbDevices()
+    }
     fun onUsbAttached() {
         updateUsbState(
             UsbState.CONNECTED,
@@ -63,7 +66,9 @@ class HomeViewModel : ViewModel() {
         )
     }
     fun checkUsbSupport() {
-        if (usbRepository.isUsbSupported()) {
+        val repository = usbRepository ?: return
+
+        if (repository.isUsbSupported()) {
             updateUsbState(
                 UsbState.WAITING,
                 "USB Host supported"
@@ -76,10 +81,12 @@ class HomeViewModel : ViewModel() {
         }
     }
     fun refreshUsbStatus() {
-        if (usbRepository.hasDevices()) {
+        val repository = usbRepository ?: return
+
+        if (repository.hasDevices()) {
             updateUsbState(
                 UsbState.CONNECTED,
-                "${usbRepository.deviceCount()} USB device(s) detected"
+                "${repository.deviceCount()} USB device(s) detected"
             )
         } else {
             updateUsbState(
