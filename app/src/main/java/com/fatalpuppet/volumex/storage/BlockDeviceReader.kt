@@ -1,12 +1,14 @@
 package com.fatalpuppet.volumex.storage
 
-class BlockDeviceReader {
+interface BlockDeviceReader {
+
+    fun open(): Boolean
+
+    fun close()
+
     fun readSector(
-        sector: Long,
+        sectorNumber: Long,
         sectorSize: Int = 512
-    ): ByteArray {
-        throw NotImplementedError(
-            "Raw sector reading not implemented yet."
-        )
-    }
+    ): ByteArray?
+
 }

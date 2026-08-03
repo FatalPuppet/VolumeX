@@ -32,6 +32,13 @@ fun UsbDeviceCard(
             Text("Serial Number : ${device.serialNumber ?: "Unavailable"}")
             Text("Vendor ID : 0x${device.vendorId.toString(16).uppercase()}")
             Text("Product ID : 0x${device.productId.toString(16).uppercase()}")
+            Text("Permission : ${
+                    if (device.permissionGranted)
+                        "Granted"
+                    else
+                        "Required"
+                }"
+            )
         }
     }
 }

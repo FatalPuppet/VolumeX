@@ -8,13 +8,28 @@ import android.content.IntentFilter
 import android.util.Log
 
 import com.fatalpuppet.volumex.data.models.UsbDeviceInfo
+import com.fatalpuppet.volumex.permissions.UsbPermissionManager
 
 class UsbService(
     private val context: Context
 ) {
+    private val permissionManager =
+        UsbPermissionManager(context)
     private val usbManager =
         context.getSystemService(Context.USB_SERVICE) as UsbManager
     private var receiver: BroadcastReceiver? = null
+
+    fun hasPermission(
+        device: UsbDevice
+    ): Boolean {
+        return permissionManager.hasPermission(device)
+    }
+    fun requestPermission(
+        device: UsbDevice
+    ) {
+        permissionManager.requestPermission(device)
+    }
+
     fun isUsbHostSupported(): Boolean {
         return context.packageManager.hasSystemFeature(
             android.content.pm.PackageManager.FEATURE_USB_HOST
@@ -36,7 +51,9 @@ class UsbService(
                     null
                 },
                 vendorId = device.vendorId,
-                productId = device.productId
+                productId = device.productId,
+                permissionGranted =
+                    permissionManager.hasPermission(device)
             )
         }
     }

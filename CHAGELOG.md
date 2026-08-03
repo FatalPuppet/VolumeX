@@ -42,3 +42,49 @@
 - HomeViewModel initialization.
 - Android 13+ BroadcastReceiver compatibility.
 - Safe handling of USB serial numbers without permission.
+
+## [0.2.2-alpha]
+
+### Added
+- UsbBlockDeviceReader implementation.
+- BlockDeviceReader interface expanded.
+- RawSector model.
+- DeviceConnectionState enum.
+- HexUtils utility.
+
+### Changed
+- Storage layer prepared for raw sector access.
+- 
+## [0.3.0-alpha]
+
+### Added
+- UsbDeviceConnection management.
+- SCSI command definitions.
+- SCSI result model.
+- Device connection state machine.
+- Sector size constants.
+- Hexadecimal utilities for storage debugging.
+
+### Changed
+- UsbBlockDeviceReader now maintains an active USB connection.
+
+## [0.4.0-alpha] - 2026-08-03
+
+### Added
+- USB interface scanner.
+- USB Mass Storage interface discovery.
+- USB connection manager.
+- USB connection information model.
+- USB Mass Storage constants.
+- Command Block Wrapper (CBW) model.
+- Command Status Wrapper (CSW) model.
+- SCSI INQUIRY response model.
+- Diagnostics package foundation.
+
+### Changed
+- UsbBlockDeviceReader now opens, claims and releases USB interfaces.
+- Improved internal USB architecture.
+
+### Fixed
+- USB interface detection.
+- Endpoint discovery.

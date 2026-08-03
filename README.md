@@ -1,32 +1,16 @@
 # VolumeX
 
-VolumeX is a lightweight tool designed to read external storage volumes on Android.
+VolumeX is an open-source Android application designed to read Apple APFS formatted drives directly from Android devices without requiring a Mac.
 
-Currently Supported Formats:
+The long-term objective is to provide a modern, lightweight and completely offline APFS explorer capable of safely accessing external storage connected through USB OTG.
 
-✅ APFS (Apple File System) - Full read support
-#
-Coming Soon in Future Updates:
-
-🚧 NTFS (Windows)
-
-🚧 exFAT (Cross-platform)
-
-🚧 HFS+ (Legacy Mac)
-
-Plug in your drive, and let VolumeX bridge the gap between your storage and your Android device!
-#
-#
-Read-only APFS filesystem reader for Android.
-
-## Goals
-
-- Detect USB drives
-- Read APFS volumes
-- Browse files
-- Copy files
-- Open files
-- Never modify the source drive
+Current development status:
+- UI framework ✅
+- USB detection ✅
+- USB Mass Storage communication 🟢
+- SCSI engine ⏳
+- GPT parser ⏳
+- APFS parser ⏳
 
 ## Status
 

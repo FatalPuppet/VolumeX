@@ -1,5 +1,7 @@
 package com.fatalpuppet.volumex.storage.models
 
+import com.fatalpuppet.volumex.storage.DeviceConnectionState
+
 data class DiskInfo(
 
     val name: String,
@@ -10,6 +12,8 @@ data class DiskInfo(
 
     val capacity: Long? = null,
 
-    val partitionCount: Int = 0
+    val partitionCount: Int = 0,
+
+    val connectionState: DeviceConnectionState = DeviceConnectionState.DISCONNECTED
 
 )
