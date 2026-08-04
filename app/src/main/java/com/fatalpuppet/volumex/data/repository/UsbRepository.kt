@@ -4,11 +4,12 @@ import android.content.Context
 import android.hardware.usb.UsbDevice
 import com.fatalpuppet.volumex.services.UsbService
 import com.fatalpuppet.volumex.storage.DiskScanner
+import com.fatalpuppet.volumex.storage.UsbBlockDeviceReader
 
 class UsbRepository(
     context: Context
 ) {
-
+    private var blockDeviceReader: UsbBlockDeviceReader? = null
     private val usbService = UsbService(context)
     private val diskScanner = DiskScanner()
 
@@ -17,6 +18,24 @@ class UsbRepository(
 
     fun connectedDevices(): List<UsbDevice> =
         usbService.getConnectedDevices()
+
+    fun openDevice(
+        device: UsbDevice
+    ): Boolean {
+
+        val reader = UsbBlockDeviceReader(
+            context,
+            device
+        )
+
+        if (!reader.open()) {
+            return false
+        }
+
+        blockDeviceReader = reader
+
+        return true
+    }
 
     fun registerUsbEvents(
         onAttach: () -> Unit,

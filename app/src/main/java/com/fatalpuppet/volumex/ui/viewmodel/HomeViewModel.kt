@@ -17,6 +17,8 @@ class HomeViewModel : ViewModel() {
     var uiState by mutableStateOf(HomeUiState())
         private set
     private var usbRepository: UsbRepository? = null
+
+
     fun initialize(context: Context) {
         if (usbRepository == null) {
             usbRepository = UsbRepository(context)
@@ -40,6 +42,18 @@ class HomeViewModel : ViewModel() {
                 "${devices.size} USB device(s) connected"
             )
         }
+    }
+    fun connectDevice(
+        device: UsbDevice
+    ) {
+        repository.openDevice(device)
+        repository.getConnectedDevices()
+            .firstOrNull()
+            ?.let {
+
+                connectDevice(it)
+
+            }
     }
     fun onUsbChanged() {
         scanUsbDevices()

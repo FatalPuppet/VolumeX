@@ -29,8 +29,9 @@ object CommandBlockWrapperBuilder {
 
         buffer.put(cbw.command)
 
-        while (buffer.position() < 31)
+        repeat(16 - cbw.command.size) {
             buffer.put(0)
+        }
 
         return buffer.array()
 

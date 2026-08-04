@@ -88,3 +88,25 @@
 ### Fixed
 - USB interface detection.
 - Endpoint discovery.
+
+## [0.5.0-alpha] - 2026-08-03
+### Added
+- Bulk USB transport layer.
+- Bulk-Only Transport implementation.
+- Command Block Wrapper builder.
+- Command Status Wrapper parser.
+- SCSI executor.
+- SCSI command factory.
+- SCSI command logger.
+- Hex dump formatter.
+- Command tag generator.
+- USB connection models.
+- Transport validation utilities.
+
+### Changed
+- Refined USB Mass Storage communication architecture.
+- Improved separation between USB, transport and SCSI layers.
+
+### Tested
+- Successfully built and executed on Samsung S25 Ultra.
+- Successfully detected multiple USB flash drives.

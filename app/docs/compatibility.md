@@ -8,6 +8,9 @@
 
 ## USB Devices
 
-| Device | Type | Detection | Notes |
-|---------|------|-----------|-------|
+| Device                    | Type | Detection | Notes |
+|---------------------------|------|-----------|-------|
 | TrendMicro DT microDuo 3C | USB Flash Drive | ✅ | Product and Vendor IDs detected |
+| Generic USB drive         | USB Flash Drive | ✅ | Product and Vendor IDs detected |
+| Samsung T7 Shield         | USB Flash Drive | ✅ | Product and Vendor IDs detected |
+| Sandisk 3.2Gen1           | USB Flash Drive | ✅ | Product and Vendor IDs detected |

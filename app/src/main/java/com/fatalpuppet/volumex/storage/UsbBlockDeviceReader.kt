@@ -11,6 +11,9 @@ class UsbBlockDeviceReader(
     private val interfaceScanner = UsbInterfaceScanner()
     private var massStorage: UsbMassStorageInterface? = null
     private var claimed = false
+    private var transport: BulkUsbTransport? = null
+    private var connectionInfo: UsbConnectionInfo? = null
+    private var scsiExecutor: ScsiExecutor? = null
 
     fun getConnectionInfo(): UsbConnectionInfo? {
 
@@ -38,6 +41,26 @@ class UsbBlockDeviceReader(
             massStorage!!.usbInterface,
             true
         )
+        Log.d("VolumeX", "UsbBlockDeviceReader.open()")
+        if (claimed) {
+            transport = BulkUsbTransport(
+                connection = connection!!,
+                bulkIn = massStorage!!.bulkIn,
+                bulkOut = massStorage!!.bulkOut
+            )
+            connectionInfo = getConnectionInfo()
+        }
+        val bulkTransport = BulkOnlyTransport(
+            transport!!
+        )
+        scsiExecutor = ScsiExecutor(bulkTransport)
+        Log.d("VolumeX", "SCSI Executor created")
+
+        val transaction = testUnitReady()
+        Log.d("VolumeX", "Calling TEST UNIT READY")
+
+        Log.d("VolumeX", "Logging transaction")
+        ScsiDebug.transaction(transaction)
         Log.d(
             "VolumeX",
             "USB interface claimed = $claimed"
@@ -69,5 +92,21 @@ class UsbBlockDeviceReader(
 
     fun isOpen(): Boolean {
         return connection != null && claimed
+    }
+
+    fun testUnitReady(): ScsiTransaction {
+        val executor =
+            scsiExecutor
+                ?: return ScsiTransaction(
+                    "TEST UNIT READY",
+                    false,
+                    0,
+                    "Transport unavailable"
+                )
+        return executor.execute(
+            "TEST UNIT READY",
+            ScsiCommandFactory.testUnitReady(),
+            0
+        )
     }
 }

@@ -1,6 +1,6 @@
 package com.fatalpuppet.volumex.storage
 
-object UsbConstants {
+object UsbStorageConstants {
 
     const val CBW_SIGNATURE = 0x43425355
 
