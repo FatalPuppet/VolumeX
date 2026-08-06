@@ -5,25 +5,16 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import android.content.Context
+import android.hardware.usb.UsbDevice
 import com.fatalpuppet.volumex.data.usb.UsbState
 import com.fatalpuppet.volumex.ui.state.HomeUiState
 import com.fatalpuppet.volumex.data.repository.UsbRepository
 
-// This part commented because it might be needed later
-//class HomeViewModel(
-//    private val usbRepository: UsbRepository
-//) : ViewModel() {
 class HomeViewModel : ViewModel() {
     var uiState by mutableStateOf(HomeUiState())
         private set
     private var usbRepository: UsbRepository? = null
 
-
-    fun initialize(context: Context) {
-        if (usbRepository == null) {
-            usbRepository = UsbRepository(context)
-        }
-    }
     fun scanUsbDevices() {
         val repository = usbRepository ?: return
         val devices = repository.devices()
@@ -43,28 +34,25 @@ class HomeViewModel : ViewModel() {
             )
         }
     }
-    fun connectDevice(
-        device: UsbDevice
-    ) {
-        repository.openDevice(device)
-        repository.getConnectedDevices()
-            .firstOrNull()
-            ?.let {
-
-                connectDevice(it)
-
-            }
-    }
-    fun onUsbChanged() {
+        fun onUsbChanged() {
         scanUsbDevices()
     }
     fun onUsbAttached() {
+        scanUsbDevices()
         updateUsbState(
             UsbState.CONNECTED,
             "USB device connected"
         )
     }
+    fun connectFirstDevice(): Boolean {
+        val repository = usbRepository ?: return false
+        scanUsbDevices()
+        if (uiState.connectedDevices.isEmpty())
+            return false
+        return repository.openFirstDevice()
+    }
     fun onUsbDetached() {
+        scanUsbDevices()
         updateUsbState(
             UsbState.WAITING,
             "Waiting for USB device"
@@ -79,9 +67,36 @@ class HomeViewModel : ViewModel() {
             statusMessage = message
         )
     }
+    fun initialize(context: Context) {
+        if (usbRepository != null) return
+        usbRepository = UsbRepository(context)
+        usbRepository?.registerReceiver(
+            onAttach = ::onUsbAttached,
+            onDetach = ::onUsbDetached
+        )
+    }
+
+    fun readFirstSector() {
+        val repository =
+            usbRepository
+                ?: return
+        val sector =
+            repository.readSectorZero()
+        if (sector == null) {
+            updateUsbState(
+                UsbState.ERROR,
+                "Unable to read sector 0"
+            )
+            return
+        }
+        updateUsbState(
+            UsbState.CONNECTED,
+            "Sector 0 read (${sector.size} bytes)"
+        )
+    }
+
     fun checkUsbSupport() {
         val repository = usbRepository ?: return
-
         if (repository.isUsbSupported()) {
             updateUsbState(
                 UsbState.WAITING,

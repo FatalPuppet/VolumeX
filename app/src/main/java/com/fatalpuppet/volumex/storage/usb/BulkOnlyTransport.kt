@@ -1,4 +1,9 @@
-package com.fatalpuppet.volumex.storage
+package com.fatalpuppet.volumex.storage.usb
+
+import com.fatalpuppet.volumex.storage.BulkUsbTransport
+import com.fatalpuppet.volumex.storage.CommandStatusWrapperParser
+import com.fatalpuppet.volumex.storage.ScsiResponseValidator
+import com.fatalpuppet.volumex.storage.ScsiResult
 
 class BulkOnlyTransport(
     private val transport: BulkUsbTransport

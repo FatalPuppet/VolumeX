@@ -89,24 +89,15 @@
 - USB interface detection.
 - Endpoint discovery.
 
-## [0.5.0-alpha] - 2026-08-03
+## Version 0.4.2-alpha
+
 ### Added
-- Bulk USB transport layer.
-- Bulk-Only Transport implementation.
-- Command Block Wrapper builder.
-- Command Status Wrapper parser.
-- SCSI executor.
-- SCSI command factory.
-- SCSI command logger.
-- Hex dump formatter.
-- Command tag generator.
-- USB connection models.
-- Transport validation utilities.
+- Connected the UI to the real USB opening pipeline.
+- Removed simulated USB connection workflow.
+- Added repository support for opening the first detected USB device.
+- Improved device state synchronization after USB attach/detach.
 
-### Changed
-- Refined USB Mass Storage communication architecture.
-- Improved separation between USB, transport and SCSI layers.
-
-### Tested
-- Successfully built and executed on Samsung S25 Ultra.
-- Successfully detected multiple USB flash drives.
+### Improved
+- Simplified USB event registration.
+- Removed duplicate repository methods.
+- Cleaned orchestration between HomeScreen, HomeViewModel and UsbRepository.

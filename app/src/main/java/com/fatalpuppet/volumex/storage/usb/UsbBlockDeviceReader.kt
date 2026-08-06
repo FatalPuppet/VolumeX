@@ -1,7 +1,13 @@
-package com.fatalpuppet.volumex.storage
+package com.fatalpuppet.volumex.storage.usb
 
 import android.hardware.usb.*
 import android.util.Log
+import com.fatalpuppet.volumex.storage.disk.BlockDeviceReader
+import com.fatalpuppet.volumex.storage.BulkUsbTransport
+import com.fatalpuppet.volumex.storage.ScsiCommandFactory
+import com.fatalpuppet.volumex.storage.ScsiDebug
+import com.fatalpuppet.volumex.storage.scsi.ScsiExecutor
+import com.fatalpuppet.volumex.storage.scsi.ScsiTransaction
 
 class UsbBlockDeviceReader(
     private val usbManager: UsbManager,
@@ -84,14 +90,12 @@ class UsbBlockDeviceReader(
         claimed = false
     }
     override fun readSector(
-        sectorNumber: Long,
-        sectorSize: Int
+        lba: Long
     ): ByteArray? {
         return null
     }
-
-    fun isOpen(): Boolean {
-        return connection != null && claimed
+    override fun sectorSize(): Int {
+        return 512
     }
 
     fun testUnitReady(): ScsiTransaction {
@@ -109,4 +113,9 @@ class UsbBlockDeviceReader(
             0
         )
     }
+    override fun isOpen(): Boolean =
+        connection != null &&
+                claimed &&
+                transport != null
+
 }

@@ -1,5 +1,7 @@
 package com.fatalpuppet.volumex.storage
 
+import com.fatalpuppet.volumex.storage.scsi.ScsiTransaction
+
 object ScsiTransactionHistory {
 
     private val history = mutableListOf<ScsiTransaction>()

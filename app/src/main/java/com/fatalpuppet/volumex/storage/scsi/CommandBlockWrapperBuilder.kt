@@ -1,5 +1,6 @@
-package com.fatalpuppet.volumex.storage
+package com.fatalpuppet.volumex.storage.scsi
 
+import com.fatalpuppet.volumex.storage.UsbStorageConstants
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 

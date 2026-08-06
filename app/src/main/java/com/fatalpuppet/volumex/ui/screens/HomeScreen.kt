@@ -11,10 +11,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.remember
 
-import com.fatalpuppet.volumex.services.UsbService
 import com.fatalpuppet.volumex.ui.viewmodel.HomeViewModel
 import com.fatalpuppet.volumex.data.usb.UsbState
 import com.fatalpuppet.volumex.ui.components.AboutButton
@@ -24,52 +21,12 @@ import com.fatalpuppet.volumex.ui.components.StatusCard
 import com.fatalpuppet.volumex.ui.components.VersionFooter
 import com.fatalpuppet.volumex.ui.components.UsbDeviceCard
 
-import androidx.compose.ui.unit.sp
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
-import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.ui.text.font.FontWeight
-import com.fatalpuppet.volumex.ui.state.HomeUiState
-
 @Composable
 fun HomeScreen() {
 
     val homeViewModel: HomeViewModel = viewModel()
     val uiState = homeViewModel.uiState
     val context = LocalContext.current
-    val usbService = remember { UsbService(context) }
-
-    DisposableEffect(Unit) {
-        usbService.registerReceiver(
-            //onAttach = {
-            //    homeViewModel.onUsbChanged()
-            //},
-            //onDetach = {
-            //    homeViewModel.onUsbChanged()
-            //}
-            onAttach = {
-                try {
-                    homeViewModel.onUsbChanged()
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-            },
-            onDetach = {
-                try {
-                    homeViewModel.onUsbChanged()
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-            }
-
-        )
-        onDispose {
-            usbService.unregisterReceiver()
-        }
-    }
 
     LaunchedEffect(Unit) {
         homeViewModel.initialize(context)
@@ -91,10 +48,17 @@ fun HomeScreen() {
         }
         ConnectButton(
             onClick = {
-                homeViewModel.updateUsbState(
-                    UsbState.CONNECTED,
-                    "USB device detected (simulation)"
-                )
+                if (homeViewModel.connectFirstDevice()) {
+                    homeViewModel.updateUsbState(
+                        UsbState.CONNECTED,
+                        "USB device opened"
+                    )
+                } else {
+                    homeViewModel.updateUsbState(
+                        UsbState.ERROR,
+                        "Unable to open USB device"
+                    )
+                }
             }
         )
         AboutButton()

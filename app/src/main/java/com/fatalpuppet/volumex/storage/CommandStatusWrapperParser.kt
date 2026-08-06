@@ -1,5 +1,6 @@
 package com.fatalpuppet.volumex.storage
 
+import com.fatalpuppet.volumex.storage.scsi.CommandStatusWrapper
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 

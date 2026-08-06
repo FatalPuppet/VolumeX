@@ -1,10 +1,10 @@
-package com.fatalpuppet.volumex.storage
+package com.fatalpuppet.volumex.storage.usb
 
 import android.hardware.usb.UsbConstants
 import android.hardware.usb.UsbDevice
 import android.hardware.usb.UsbEndpoint
-import android.hardware.usb.UsbInterface
 import android.util.Log
+import com.fatalpuppet.volumex.storage.UsbInterfaceInfo
 
 class UsbInterfaceScanner {
 

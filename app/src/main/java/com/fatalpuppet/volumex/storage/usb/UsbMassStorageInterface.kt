@@ -1,4 +1,4 @@
-package com.fatalpuppet.volumex.storage
+package com.fatalpuppet.volumex.storage.usb
 
 import android.hardware.usb.UsbEndpoint
 import android.hardware.usb.UsbInterface

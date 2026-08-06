@@ -1,4 +1,4 @@
-package com.fatalpuppet.volumex.storage.models
+package com.fatalpuppet.volumex.storage.disk
 
 import com.fatalpuppet.volumex.storage.DeviceConnectionState
 

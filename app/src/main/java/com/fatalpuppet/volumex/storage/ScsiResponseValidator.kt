@@ -1,5 +1,7 @@
 package com.fatalpuppet.volumex.storage
 
+import com.fatalpuppet.volumex.storage.scsi.CommandStatusWrapper
+
 object ScsiResponseValidator {
     fun validCsw(
         csw: CommandStatusWrapper

@@ -1,6 +1,7 @@
 package com.fatalpuppet.volumex.storage
 
 import android.hardware.usb.*
+import com.fatalpuppet.volumex.storage.usb.BulkTransferResult
 
 class BulkUsbTransport(
 
