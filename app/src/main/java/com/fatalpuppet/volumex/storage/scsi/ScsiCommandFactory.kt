@@ -1,6 +1,4 @@
-package com.fatalpuppet.volumex.storage
-
-import com.fatalpuppet.volumex.storage.scsi.CommandBlockWrapper
+package com.fatalpuppet.volumex.storage.scsi
 
 object ScsiCommandFactory {
 

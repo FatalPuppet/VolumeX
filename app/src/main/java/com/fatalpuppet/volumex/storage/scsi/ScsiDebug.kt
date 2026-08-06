@@ -1,7 +1,6 @@
-package com.fatalpuppet.volumex.storage
+package com.fatalpuppet.volumex.storage.scsi
 
 import android.util.Log
-import com.fatalpuppet.volumex.storage.scsi.ScsiTransaction
 
 object ScsiDebug {
 

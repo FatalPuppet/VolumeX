@@ -1,13 +1,13 @@
-package com.fatalpuppet.volumex.storage
+package com.fatalpuppet.volumex.storage.scsi
 
-object ScsiInquiry {
+object ScsiTestUnitReady {
     fun command(): ByteArray {
         return byteArrayOf(
-            0x12,
+            ScsiOpcodes.TEST_UNIT_READY,
             0,
             0,
             0,
-            36,
+            0,
             0
         )
     }

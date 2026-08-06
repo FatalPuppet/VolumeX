@@ -1,4 +1,4 @@
-package com.fatalpuppet.volumex.storage
+package com.fatalpuppet.volumex.storage.scsi
 
 data class ScsiSense(
 

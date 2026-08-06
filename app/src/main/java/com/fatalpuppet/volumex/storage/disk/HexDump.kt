@@ -2,17 +2,21 @@ package com.fatalpuppet.volumex.storage.disk
 
 object HexDump {
 
+    fun format(
+        data: ByteArray
+    ): String {
+        return data.joinToString(" ") {
+            "%02X".format(it)
+        }
+    }
+
     fun firstBytes(
         data: ByteArray,
         count: Int = 32
     ): String {
-
-        return data
-            .take(count)
-            .joinToString(" ") {
-                "%02X".format(it)
-            }
-
+        return format(
+            data.take(count).toByteArray()
+        )
     }
 
 }

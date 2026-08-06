@@ -1,4 +1,4 @@
-package com.fatalpuppet.volumex.storage
+package com.fatalpuppet.volumex.storage.scsi
 
 object ScsiReadCapacity {
     fun command(): ByteArray {

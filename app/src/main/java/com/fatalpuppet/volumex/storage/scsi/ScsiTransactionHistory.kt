@@ -1,6 +1,4 @@
-package com.fatalpuppet.volumex.storage
-
-import com.fatalpuppet.volumex.storage.scsi.ScsiTransaction
+package com.fatalpuppet.volumex.storage.scsi
 
 object ScsiTransactionHistory {
 

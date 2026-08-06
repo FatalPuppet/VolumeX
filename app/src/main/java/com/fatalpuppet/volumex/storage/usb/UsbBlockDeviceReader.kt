@@ -3,9 +3,8 @@ package com.fatalpuppet.volumex.storage.usb
 import android.hardware.usb.*
 import android.util.Log
 import com.fatalpuppet.volumex.storage.disk.BlockDeviceReader
-import com.fatalpuppet.volumex.storage.BulkUsbTransport
-import com.fatalpuppet.volumex.storage.ScsiCommandFactory
-import com.fatalpuppet.volumex.storage.ScsiDebug
+import com.fatalpuppet.volumex.storage.scsi.ScsiCommandFactory
+import com.fatalpuppet.volumex.storage.scsi.ScsiDebug
 import com.fatalpuppet.volumex.storage.scsi.ScsiExecutor
 import com.fatalpuppet.volumex.storage.scsi.ScsiTransaction
 

@@ -1,7 +1,6 @@
-package com.fatalpuppet.volumex.storage
+package com.fatalpuppet.volumex.storage.usb
 
 import android.hardware.usb.*
-import com.fatalpuppet.volumex.storage.usb.UsbBlockDeviceReader
 
 class UsbConnectionManager(
     private val usbManager: UsbManager

@@ -1,6 +1,6 @@
 package com.fatalpuppet.volumex.storage.disk
 
-import com.fatalpuppet.volumex.storage.DeviceConnectionState
+import com.fatalpuppet.volumex.storage.usb.DeviceConnectionState
 
 data class DiskInfo(
 
